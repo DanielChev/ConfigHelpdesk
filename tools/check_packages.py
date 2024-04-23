@@ -10,7 +10,7 @@ def check_winget():
     """Check if the Windows Package Manager is installed"""
 
     try:
-        subprocess.run(["winget", "--version"], check=True)
+        subprocess.run(["winget", "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True
     except FileNotFoundError:
         print("Winget is not installed")
@@ -21,7 +21,7 @@ def check_package(package):
     """Check if a package exists in the Windows Package Manager"""
 
     try:
-        subprocess.run(["winget", "show", "--accept-source-agreements", "--id", package], check=True)
+        subprocess.run(["winget", "show", "--accept-source-agreements", "--disable-interactivity", "--id", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError:
         print(f"Package '{package}' is missing from Winget")
 
