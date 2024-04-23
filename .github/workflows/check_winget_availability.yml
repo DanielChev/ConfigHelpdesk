@@ -1,0 +1,26 @@
+name: Check Winget Package Availability
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run the workflow daily
+
+jobs:
+  check_packages:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install winget
+        uses: Cyberboss/install-winget@v1
+      
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run Python script
+        run: |
+          python tools/check_packages.py
+
