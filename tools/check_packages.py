@@ -64,7 +64,10 @@ def main():
                 failed = True
 
         if failed:
+            print("Some packages are not available on Winget")
             sys.exit(1)
+
+        print("All packages are available on Winget")
 
 
 if __name__ == "__main__":
