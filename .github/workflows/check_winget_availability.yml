@@ -3,6 +3,8 @@ name: Check Winget Package Availability
 on:
   schedule:
     - cron: '0 0 * * *' # Run the workflow daily
+  push:
+    branches: []
 
 jobs:
   check_packages:
