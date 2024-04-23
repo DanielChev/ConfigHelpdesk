@@ -25,5 +25,5 @@ jobs:
       - name: Run Python script
         working-directory: ./tools
         run: |
-          python tools/check_packages.py
+          python check_packages.py
 
