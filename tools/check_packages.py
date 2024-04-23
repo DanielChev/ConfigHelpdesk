@@ -23,8 +23,10 @@ def check_package(package):
     try:
         subprocess.run(["winget", "show", "--accept-source-agreements", "--disable-interactivity", "--id", package], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         print(f"Package '{package}' is available")
+        return True
     except subprocess.CalledProcessError:
         print(f"Package '{package}' is not available on Winget")
+        return False
 
 
 def unnest_json(json_obj):
