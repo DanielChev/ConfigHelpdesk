@@ -10,7 +10,7 @@ def check_winget():
     """Check if the Windows Package Manager is installed"""
 
     try:
-        subprocess.run(["winget", "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["winget", "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True
     except FileNotFoundError:
         print("Winget is not installed")
@@ -21,9 +21,10 @@ def check_package(package):
     """Check if a package exists in the Windows Package Manager"""
 
     try:
-        subprocess.run(["winget", "show", "--accept-source-agreements", "--disable-interactivity", "--id", package], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.run(["winget", "show", "--accept-source-agreements", "--disable-interactivity", "--id", package], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        print(f"Package '{package}' is available")
     except subprocess.CalledProcessError:
-        print(f"Package '{package}' is missing from Winget")
+        print(f"Package '{package}' is not available on Winget")
 
 
 def unnest_json(json_obj):
@@ -61,8 +62,6 @@ def main():
 
         if failed:
             sys.exit(1)
-        else:
-            sys.exit(0)
 
 
 if __name__ == "__main__":
