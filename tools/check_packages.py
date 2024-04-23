@@ -21,7 +21,7 @@ def check_package(package):
     """Check if a package exists in the Windows Package Manager"""
 
     try:
-        subprocess.run(["winget", "show", "--accept-source-agreements", "--accept-package-agreements", "--id", package], check=True)
+        subprocess.run(["winget", "show", "--accept-source-agreements", "--id", package], check=True)
     except subprocess.CalledProcessError:
         print(f"Package '{package}' is missing from Winget")
 
