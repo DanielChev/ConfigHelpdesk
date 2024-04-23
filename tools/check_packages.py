@@ -52,7 +52,8 @@ def main():
 
         # Un-nest all elements
         packages = unnest_json(packages_json)
-        print(packages)
+
+        print("Checking availability of packages...")
 
         # Check each package
         failed = False
