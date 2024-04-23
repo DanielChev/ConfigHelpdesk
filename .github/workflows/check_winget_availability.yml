@@ -23,6 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Python script
+        working-directory: ./tools
         run: |
           python tools/check_packages.py
 
